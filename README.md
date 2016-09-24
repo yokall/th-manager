@@ -7,7 +7,7 @@ The winning order of teams is decided by a combination of how many clues they ge
 
 The purpose of this application is to record team information and results and then display the results of the treasure hunt.
 
-I have chosen to use Angular 2 which is still in beta at time of writing and npm as the package manager.
+I have chosen to use Angular 2 and npm as the package manager.
 
 #Instructions for Setup
 
