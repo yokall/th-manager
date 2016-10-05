@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Reg</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let car of cars">
+            <th scope="row">{{car.reg}}</th>
+            <td>{{car.name}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input [(ngModel)]="newCar.reg" placeholder="reg"/></td>
+            <td><input [(ngModel)]="newCar.name" placeholder="name"/></td>
+            <td><button type="button" class='btn btn-primary' (click)="addCar()" [disabled]="!newCar.reg || !newCar.name">Add</button></td>
+        </tr>
+    </tbody>
+</table>
