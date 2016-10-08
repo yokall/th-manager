@@ -4,14 +4,14 @@
         <tr>
             <th>Reg</th>
             <th>Name</th>
-            <th></th>
+            <th>Start</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let car of cars">
             <th scope="row">{{car.reg}}</th>
             <td>{{car.name}}</td>
-            <td></td>
+            <td>{{car.startTime | time}}</td>
         </tr>
         <tr>
             <td><input [(ngModel)]="newCar.reg" placeholder="reg"/></td>

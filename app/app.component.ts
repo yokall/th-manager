@@ -12,7 +12,7 @@ import { CarService } from './car.service';
 export class AppComponent {
     title = 'Treasure Hunt Manager';
     cars: Car[];
-    selectedCar: Car;
+    sortedCars: Car[];
     newCar: Car = new Car();
 
     constructor(private carService: CarService) { }
@@ -22,15 +22,32 @@ export class AppComponent {
     }
 
     getCars(): void {
-        this.carService.getCars().then(cars => this.cars = cars);
+        this.carService.getCars()
+            .then(cars => {
+                this.cars = cars;
+                this.sortCars();
+            });
     }
 
-    onSelect(car: Car): void {
-        this.selectedCar = car;
+    sortCars(): void {
+        this.cars.sort((a, b) => {
+            if (a.startTime < b.startTime) {
+                return -1;
+            }
+            else if (a.startTime > b.startTime) {
+                return 1;
+            }
+            else {
+                return a.name.localeCompare(b.name);
+            }
+        });
     }
 
     addCar(): void {
+        this.newCar.startTime = new Date().valueOf();
+
         this.cars.push(this.newCar);
+        this.sortCars();
         this.newCar = <Car>{};
     }
 }
