@@ -31,23 +31,39 @@ export class AppComponent {
 
     sortCars(): void {
         this.cars.sort((a, b) => {
-            if (a.startTime < b.startTime) {
+            if (a.time < b.time) {
                 return -1;
             }
-            else if (a.startTime > b.startTime) {
+            else if (a.time > b.time) {
                 return 1;
             }
             else {
-                return a.name.localeCompare(b.name);
+                if (a.startTime < b.startTime) {
+                    return -1;
+                }
+                else if (a.startTime > b.startTime) {
+                    return 1;
+                }
+                else {
+                    return a.name.localeCompare(b.name);
+                }
             }
         });
     }
 
     addCar(): void {
         this.newCar.startTime = new Date().valueOf();
+        this.newCar.time = Number.MAX_VALUE;
 
         this.cars.push(this.newCar);
         this.sortCars();
         this.newCar = <Car>{};
+    }
+
+    carFinished(car: Car): void {
+        car.finishTime = new Date().valueOf();
+        car.time = car.finishTime - car.startTime.valueOf();
+
+        this.sortCars();
     }
 }

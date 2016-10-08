@@ -1,22 +1,26 @@
 <h1>{{title}}</h1>
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Reg</th>
-            <th>Name</th>
-            <th>Start</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let car of cars">
-            <th scope="row">{{car.reg}}</th>
-            <td>{{car.name}}</td>
-            <td>{{car.startTime | time}}</td>
-        </tr>
-        <tr>
-            <td><input [(ngModel)]="newCar.reg" placeholder="reg"/></td>
-            <td><input [(ngModel)]="newCar.name" placeholder="name"/></td>
-            <td><button type="button" class='btn btn-primary' (click)="addCar()" [disabled]="!newCar.reg || !newCar.name">Add</button></td>
-        </tr>
-    </tbody>
+	<thead>
+		<tr>
+			<th>Reg</th>
+			<th>Name</th>
+			<th>Start</th>
+			<th>Finish</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let car of cars">
+			<th scope="row">{{car.reg}}</th>
+			<td>{{car.name}}</td>
+			<td>{{car.startTime | time}}</td>
+			<td *ngIf="car.finishTime">{{car.finishTime | time}} ({{car.time | timeDuration}})</td>
+			<td *ngIf="!car.finishTime"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
+		</tr>
+		<tr>
+			<td><input [(ngModel)]="newCar.reg" placeholder="reg" /></td>
+			<td><input [(ngModel)]="newCar.name" placeholder="name" /></td>
+			<td><button type="button" class='btn btn-primary' (click)="addCar()" [disabled]="!newCar.reg || !newCar.name">Add</button></td>
+			<td></td>
+		</tr>
+	</tbody>
 </table>
