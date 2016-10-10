@@ -6,6 +6,7 @@
 			<th>Name</th>
 			<th>Start</th>
 			<th>Finish</th>
+			<th>Score</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,6 +16,8 @@
 			<td>{{car.startTime | time}}</td>
 			<td *ngIf="car.finishTime">{{car.finishTime | time}} ({{car.time | timeDuration}})</td>
 			<td *ngIf="!car.finishTime"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
+			<td *ngIf="car.finishTime"><input type="number" min="0" step="1" [(ngModel)]="car.score" (change)="sortCars()" placeholder="score" /></td>
+			<td *ngIf="!car.finishTime">N/A</td>
 		</tr>
 		<tr>
 			<td><input [(ngModel)]="newCar.reg" placeholder="reg" /></td>

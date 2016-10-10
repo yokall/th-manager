@@ -4,4 +4,5 @@ export class Car {
     startTime: number;
     finishTime: number;
     time: number;
+    score: number;
 }

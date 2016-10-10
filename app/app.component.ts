@@ -31,21 +31,29 @@ export class AppComponent {
 
     sortCars(): void {
         this.cars.sort((a, b) => {
-            if (a.time < b.time) {
+            if (a.score > b.score) {
                 return -1;
             }
-            else if (a.time > b.time) {
+            else if (a.score < b.score) {
                 return 1;
             }
             else {
-                if (a.startTime < b.startTime) {
+                if (a.time < b.time) {
                     return -1;
                 }
-                else if (a.startTime > b.startTime) {
+                else if (a.time > b.time) {
                     return 1;
                 }
                 else {
-                    return a.name.localeCompare(b.name);
+                    if (a.startTime < b.startTime) {
+                        return -1;
+                    }
+                    else if (a.startTime > b.startTime) {
+                        return 1;
+                    }
+                    else {
+                        return a.name.localeCompare(b.name);
+                    }
                 }
             }
         });
