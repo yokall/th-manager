@@ -8,13 +8,13 @@ export class PositionPipe implements PipeTransform {
         if (index.toString().match(/^(11|12|13)$/)) {
             position = index + 'th';
         }
-        else if (index.toString().match(/\d*1$/) {
+        else if (index.toString().match(/\d*1$/)) {
             position = index + 'st';
         }
-        else if (index.toString().match(/\d*2$/) {
+        else if (index.toString().match(/\d*2$/)) {
             position = index + 'nd';
         }
-        else if (index.toString().match(/\d*3$/) {
+        else if (index.toString().match(/\d*3$/)) {
             position = index + 'rd';
         }
         else {
