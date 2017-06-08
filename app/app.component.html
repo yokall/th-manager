@@ -3,8 +3,8 @@
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Reg</th>
 			<th>Name</th>
+			<th>Reg</th>
 			<th>Start</th>
 			<th>Finish</th>
 			<th>Score</th>
@@ -14,8 +14,8 @@
 		<tr *ngFor="let car of cars; let i = index">
 			<th *ngIf="car.score" scope="row">{{i + 1 | position}}</th>
 			<th *ngIf="!car.score" scope="row"></th>
-			<td>{{car.reg}}</td>
 			<td>{{car.name}}</td>
+			<td>{{car.reg}}</td>
 			<td>{{car.startTime | time}}</td>
 			<td *ngIf="car.finishTime">{{car.finishTime | time}} ({{car.time | timeDuration}})</td>
 			<td *ngIf="!car.finishTime"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
@@ -24,8 +24,8 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><input [(ngModel)]="newCar.reg" placeholder="reg" /></td>
 			<td><input [(ngModel)]="newCar.name" placeholder="name" /></td>
+			<td><input [(ngModel)]="newCar.reg" placeholder="reg" /></td>
 			<td><button type="button" class='btn btn-primary' (click)="addCar()" [disabled]="!newCar.reg || !newCar.name">Add</button></td>
 			<td></td>
 			<td></td>
