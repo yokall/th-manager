@@ -1,0 +1,34 @@
+<h1>{{title}}</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Reg</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars; let i = index">
+      <th *ngIf="car.score" scope="row">{{i + 1 | position}}</th>
+      <th *ngIf="!car.score" scope="row"></th>
+      <td>{{car.name}}</td>
+      <td>{{car.reg}}</td>
+      <td>{{car.startTime | time}}</td>
+      <td *ngIf="car.finishTime">{{car.finishTime | time}} ({{car.time | timeDuration}})</td>
+      <td *ngIf="!car.finishTime"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
+      <td *ngIf="car.finishTime"><input type="number" min="0" step="1" [(ngModel)]="car.score" (change)="sortCars()" placeholder="score" /></td>
+      <td *ngIf="!car.finishTime">N/A</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input [(ngModel)]="newCar.name" placeholder="name" /></td>
+      <td><input [(ngModel)]="newCar.reg" placeholder="reg" /></td>
+      <td><button type="button" class='btn btn-primary' (click)="addCar()" [disabled]="!newCar.reg || !newCar.name">Add</button></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
