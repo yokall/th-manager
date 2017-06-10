@@ -7,10 +7,13 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "devstart": "ng serve",
+    "start": "node server.js",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "deploy": "git push heroku master --force",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +25,12 @@
     "@angular/platform-browser": "^2.3.1",
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
+    "@types/node": "^6.0.42",
+    "angular-cli": "1.0.0-beta.28.3",
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "express": "^4.15.3",
     "ng2-bootstrap": "^1.1.8",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
@@ -32,8 +39,6 @@
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
-    "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.28.3",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -46,5 +51,9 @@
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
     "typescript": "~2.0.3"
+  },
+  "engines": {
+    "node": "6.10.3",
+    "npm": "3.10.10"
   }
 }
