@@ -1,8 +1,9 @@
 export class Car {
+    _id: string;
     reg: string;
     name: string;
-    startTime: number;
-    finishTime: number;
+    start_time: number;
+    finish_time: number;
     time: number;
     score: number;
 }

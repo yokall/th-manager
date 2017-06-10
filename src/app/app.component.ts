@@ -23,7 +23,7 @@ export class AppComponent {
 
   getCars(): void {
     this.carService.getCars()
-      .then(cars => {
+      .subscribe(cars => {
         this.cars = cars;
         this.sortCars();
       });
@@ -45,10 +45,10 @@ export class AppComponent {
           return 1;
         }
         else {
-          if (a.startTime < b.startTime) {
+          if (a.start_time < b.start_time) {
             return -1;
           }
-          else if (a.startTime > b.startTime) {
+          else if (a.start_time > b.start_time) {
             return 1;
           }
           else {
@@ -60,18 +60,34 @@ export class AppComponent {
   }
 
   addCar(): void {
-    this.newCar.startTime = new Date().valueOf();
-    this.newCar.time = Number.MAX_VALUE;
+    const car = this.newCar;
+    car.start_time = new Date().valueOf();
+    car.time = Number.MAX_VALUE;
 
-    this.cars.push(this.newCar);
-    this.sortCars();
+    this.carService
+      .save(car)
+      .subscribe(r => {
+        console.log('Response _id' + r.json()._id);
+        car._id = r.json()._id;
+        this.cars.push(car);
+        this.sortCars();
+      });
+
     this.newCar = <Car>{};
   }
 
   carFinished(car: Car): void {
-    car.finishTime = new Date().valueOf();
-    car.time = car.finishTime - car.startTime.valueOf();
+    car.finish_time = new Date().valueOf();
+    car.time = car.finish_time - car.start_time.valueOf();
 
-    this.sortCars();
+    this.carService
+      .update(car)
+      .subscribe(r => this.sortCars());
+  }
+
+  updateCar(car: Car): void {
+    this.carService
+      .update(car)
+      .subscribe(r => this.sortCars());
   }
 }

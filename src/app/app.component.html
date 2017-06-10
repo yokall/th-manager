@@ -16,11 +16,11 @@
       <th *ngIf="!car.score" scope="row"></th>
       <td>{{car.name}}</td>
       <td>{{car.reg}}</td>
-      <td>{{car.startTime | time}}</td>
-      <td *ngIf="car.finishTime">{{car.finishTime | time}} ({{car.time | timeDuration}})</td>
-      <td *ngIf="!car.finishTime"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
-      <td *ngIf="car.finishTime"><input type="number" min="0" step="1" [(ngModel)]="car.score" (change)="sortCars()" placeholder="score" /></td>
-      <td *ngIf="!car.finishTime">N/A</td>
+      <td>{{car.start_time | time}}</td>
+      <td *ngIf="car.finish_time">{{car.finish_time | time}} ({{car.time | timeDuration}})</td>
+      <td *ngIf="!car.finish_time"><button type="button" class='btn btn-xs btn-success' (click)="carFinished(car)">Finished</button></td>
+      <td *ngIf="car.finish_time"><input type="number" min="0" step="1" [(ngModel)]="car.score" (change)="updateCar(car)" placeholder="score" /></td>
+      <td *ngIf="!car.finish_time">N/A</td>
     </tr>
     <tr>
       <td></td>

@@ -3,6 +3,11 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/TreasureHuntManager');
+require('./server/models/cars');
 
 // Get our API routes
 const api = require('./server/routes/api');
