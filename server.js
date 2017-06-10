@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
+
+var db_conn_string = 'mongodb://localhost/TreasureHuntManager';
+if (process.env.NODE_ENV == 'production') {
+    db_conn_string = 'mongodb://localhost/TreasureHuntManager';
+}
+
 mongoose.connect('mongodb://localhost/TreasureHuntManager');
 require('./server/models/cars');
 
