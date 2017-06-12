@@ -1,4 +1,5 @@
 // Get dependencies
+const compression = require('compression');
 const express = require('express');
 const path = require('path');
 const http = require('http');
@@ -9,30 +10,33 @@ mongoose.Promise = global.Promise;
 
 var db_conn_string = 'mongodb://localhost/TreasureHuntManager';
 if (process.env.NODE_ENV == 'production') {
-    db_conn_string = 'mongodb://localhost/TreasureHuntManager';
+    db_conn_string = 'mongodb://apiUser:ApIuSeR@ds133291.mlab.com:33291/th_manager';
 }
 
-mongoose.connect('mongodb://localhost/TreasureHuntManager');
-require('./server/models/cars');
+mongoose.connect(db_conn_string);
+require('./models/cars');
 
 // Get our API routes
-const api = require('./server/routes/api');
+const api = require('./routes/api');
 
 const app = express();
+
+// Gzip
+app.use(compression());
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+// Serve static files from the dist directory
+app.use(express.static(__dirname + '/../dist'));
 
 // Set our api routes
 app.use('/api', api);
 
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+// Return index.html for all GET requests for PathLocationStrategy
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
 
 /**
