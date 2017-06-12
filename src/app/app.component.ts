@@ -63,6 +63,7 @@ export class AppComponent {
     const car = this.newCar;
     car.start_time = new Date().valueOf();
     car.time = Number.MAX_VALUE;
+    car.score = 0;
 
     this.carService
       .save(car)
