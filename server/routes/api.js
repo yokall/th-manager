@@ -29,13 +29,11 @@ router.post('/cars', (req, res) => {
 });
 
 router.put('/cars/:id', (req, res) => {
-    console.log("Request:");
-    console.log(req.body);
-    console.log('Request ID: ' + req.params.id);
-    console.log('Finish time: ' + req.body.finish_time);
-    console.log('Time: ' + req.body.time);
+    const finish_time = req.body.finish_time || 0;
+    const time = req.body.time || 0;
+    const score = req.body.score || 0;
 
-    Car.findOneAndUpdate({ "_id": req.params.id }, { "finish_time": req.body.finish_time, "time": req.body.time, "score": req.body.score }, { upsert: true }, function (err, car) {
+    Car.findOneAndUpdate({ "_id": req.params.id }, { "finish_time": finish_time, "time": time, "score": score }, { upsert: true }, function (err, car) {
         if (err)
             res.send(err);
         res.json(car);
