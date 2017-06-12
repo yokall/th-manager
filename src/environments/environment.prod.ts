@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  db_conn_string: 'https://th-manager.herokuapp.com/api'
 };

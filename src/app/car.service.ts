@@ -3,10 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Car } from './car';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class CarService {
-    private baseUrl = 'http://localhost:3000/api';
+    private baseUrl = environment.db_conn_string;
 
     constructor(private http: Http) {
     }
