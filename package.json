@@ -3,6 +3,9 @@
   "description": "Simple web app for managing a treasure hunt",
   "author": "Colin Campbell",
   "version": "2.0.0",
+  "engines": {
+    "node": "8.1.4"
+  },
   "license": "ISC",
   "angular-cli": {},
   "scripts": {
