@@ -1,6 +1,6 @@
 import { Headers, Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs'
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Car } from './car';
 import { environment } from '../environments/environment';
@@ -15,7 +15,7 @@ export class CarService {
     getCars(): Observable<Car[]> {
         const cars = this.http
             .get(`${this.baseUrl}/cars`, { headers: this.getHeaders() })
-            .map(mapCars);
+            .pipe(map(mapCars));
         return cars;
     }
 
