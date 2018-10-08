@@ -1,7 +1,7 @@
 # To build and run with Docker:
 #
 #  $ docker build -t ng-quickstart .
-#  $ docker run -it --rm -p 3000:3000 -p 3001:3001 ng-quickstart
+#  $ docker run -it --rm -p 4200:4200 ng-quickstart
 #
 FROM node:latest
 
@@ -11,7 +11,7 @@ RUN mkdir -p /quickstart /home/nodejs && \
     chown -R nodejs:nodejs /home/nodejs
 
 WORKDIR /quickstart
-COPY package.json typings.json /quickstart/
+COPY package.json /quickstart/
 RUN npm install --unsafe-perm=true
 
 COPY . /quickstart
