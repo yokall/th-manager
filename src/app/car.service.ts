@@ -1,47 +1,38 @@
-import { Headers, Http, Response } from '@angular/http';
-import { Observable, of } from 'rxjs'
-import { map } from 'rxjs/operators';
+// import { Headers, Http, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs'
 import { Injectable } from '@angular/core';
 import { Car } from './car';
 import { environment } from '../environments/environment';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class CarService {
     private baseUrl = environment.db_conn_string;
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     getCars(): Observable<Car[]> {
         const cars = this.http
-            .get(`${this.baseUrl}/cars`, { headers: this.getHeaders() })
-            .pipe(map(mapCars));
+            .get<Car[]>(`${this.baseUrl}/cars`, httpOptions);
         return cars;
     }
 
-    save(car: Car): Observable<Response> {
+    save(car: Car): Observable<Car> {
         return this
             .http
-            .post(`${this.baseUrl}/cars`, car, { headers: this.getHeaders() });
+            .post<Car>(`${this.baseUrl}/cars`, car, httpOptions);
     }
 
-    update(car: Car): Observable<Response> {
+    update(car: Car): Observable<any> {
         console.log('Service car: ' + JSON.stringify(car));
         console.log(car._id);
         return this
             .http
-            .put(`${this.baseUrl}/cars/${car._id}`, car, { headers: this.getHeaders() });
+            .put(`${this.baseUrl}/cars/${car._id}`, car, httpOptions);
     }
-
-    private getHeaders() {
-        // I included these headers because otherwise FireFox
-        // will request text/html instead of application/json
-        const headers = new Headers();
-        headers.append('Accept', 'application/json');
-        return headers;
-    }
-}
-
-function mapCars(response: Response): Car[] {
-    return response.json();
 }

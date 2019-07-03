@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Car } from './car';
 import { CarService } from './car.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-root',
-  templateUrl: 'app.component.html',
+  templateUrl: './app.component.html',
   providers: [CarService]
 })
 export class AppComponent {
@@ -67,9 +65,7 @@ export class AppComponent {
 
     this.carService
       .save(car)
-      .subscribe(r => {
-        console.log('Response _id' + r.json()._id);
-        car._id = r.json()._id;
+      .subscribe(car => {
         this.cars.push(car);
         this.sortCars();
       });
