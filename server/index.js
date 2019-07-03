@@ -13,7 +13,7 @@ if (process.env.NODE_ENV == 'production') {
     db_conn_string = 'mongodb://apiUser:ApIuSeR@ds133291.mlab.com:33291/th_manager';
 }
 
-mongoose.connect(db_conn_string);
+mongoose.connect(db_conn_string, { useNewUrlParser: true, useFindAndModify: false });
 require('./models/cars');
 
 const app = express();
