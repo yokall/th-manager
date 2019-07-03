@@ -16,4 +16,4 @@ I have chosen to use Angular 2 and npm as the package manager.
 3. Install node modules - `npm install`
 4. Start the dev server - `npm start`
 
-In s web browser go to `http://localhost:4200` to view the app.  As you make changes to the code with the server running, the web browser will automatically refresh to show those changes.
+In a web browser go to `http://localhost:4200` to view the app.  As you make changes to the code with the server running, the web browser will automatically refresh to show those changes.
